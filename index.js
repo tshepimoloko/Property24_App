@@ -1,44 +1,37 @@
 const express = require("express");
 const app = express();
-const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-
-//models
-const TodoTask = require("./models/TodoTask");
-
-dotenv.config();
+const bodyParser = require('body-parser');
+const properties = require('./routes/properties')
 
 app.use("/static", express.static("public"));
 
 app.use(express.urlencoded({ extended: true}));
 
-//connection to db
-mongoose.set("useFindAndModify", false);
+mongoose.Promise = global.Promise;
 
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
-  console.log("Connected to db!");
-  app.listen(3000, () => console.log("Server Up and running"));
-});
+app.use(bodyParser.json());
+app.use('/properties',properties);
 
-//view engine configuration
-app.set("view engine", "ejs");
+mongoose.connect('mongodb+srv://todoListApp:test@cluster0-l6um6.mongodb.net/test?retryWrites=true&w=majority');
 
 // GET METHOD
 app.get("/", (req, res) => {
-  TodoTask.find({}, (err, tasks) => {
-    res.render('./views/todos.ejs')
-    });
+  // TodoTask.find({}, (err, tasks) => {
+    res.send('Hello');
+    // });
 });
 
 //POST METHOD
 app.post('/',async (req, res) => {
 const todoTask = new TodoTask({
-content: req.body.content
+    content: req.body.content
 });
 try {
-await todoTask.save();
-res.redirect("/");
-} catch (err) {
-res.redirect("/");
-}
-});
+      await todoTask.save();
+      res.redirect("/");
+      } catch (err) {
+      res.redirect("/");
+    }
+  });
+  app.listen(3000, () => console.log("Server Up and running"));
