@@ -12,6 +12,9 @@ price: {
   price: {
 type: String},
   image: {
-  type: String}
+  type: String},
+  agentid:{
+    type:String
+  }
   })
 module.exports = mongoose.model('properties',propSchema);
