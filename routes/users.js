@@ -4,9 +4,7 @@ const user = require('../models/user');
 
 //get a list from the database
 router.post('/signup', function(req,res){
-
-
-  //encrypt password
+  //encryption password
     const User = {
       name:req.body.name,
       surname:req.body.surname,
@@ -20,7 +18,6 @@ router.post('/signup', function(req,res){
       if(r.length == 1){
         res.send({user_id:r[0]._id});
       }else{
-        res.send("something went wrong");
       }
     })
   })
@@ -33,16 +30,16 @@ router.post('/login', function(req,res){
     res.send({user_id:result[0]._id});
     }
     else {
-      res.send("wrong email or password");
+      res.send("Wrong email or Password. Please re-enter");
     }
   })
 });
 
 //update from db
 router.put('/users/:id', function(req, res, next){
-    Users.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
-        Users.findOne({_id: req.params.id}).then(function(user){
-            res.send(user);
+    users.findByIdAndUpdate({_id: req.params.id}, req.body).then(function(){
+        users.findOne({_id: req.params.id}).then(function(User){
+            res.send(User);
             //error  handling
         });
     }).catch(next);
@@ -51,8 +48,8 @@ router.put('/users/:id', function(req, res, next){
 
 // delete a ninja from the db
 router.delete('/users/:id', function(req, res, next){
-    User.findByIdAndRemove({_id: req.params.id}).then(function(user){
-        res.send(user);
+    user.findByIdAndRemove({_id: req.params.id}).then(function(User){
+        res.send(User);
         //error handle
     }).catch(next);
 });

@@ -4,18 +4,28 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const properties = require('./routes/properties');
 const user = require('./routes/users');
+// const passport = require('passport')
+// .FacebookStrategy =require('passport-facebook').Strategy;
 
+// passport.use(new FacebookStrategy{
+//     agentid: facebook_app_id,
+//     userSecret: facebook_app_secret,
+//     callbackURL:
+// })
 app.use("/static", express.static("public"));//remove
 
 app.use(express.urlencoded({ extended: true}));
 
 mongoose.Promise = global.Promise;
 
-app.use(bodyParser.json());         // use body-parser middleware
+app.use(bodyParser.json());         //use body-parser middleware
 app.use('/properties',properties);
 app.use('/auth',user);
 
+
 mongoose.connect('mongodb+srv://todoListApp:test@cluster0-l6um6.mongodb.net/test?retryWrites=true&w=majority');
+
+// mongoose.connect('mongodb://localhost/property24'); <---- USed to connect mongodb when there's no internet like loadshedding
 
 // initialize routes
 app.use('/api', require('./routes/api'));
@@ -27,6 +37,6 @@ app.use(function(err, req, res, next){
 });
 
 // listen for requests
-app.listen(process.env.port || 4000, function(){
+app.listen(process.env.PORT || 4000, function(){
     console.log('now listening for requests');
 });
