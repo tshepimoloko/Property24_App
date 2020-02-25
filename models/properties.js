@@ -8,12 +8,9 @@ bedrooms: {
   type: Number
   },
 price: {
-  type: String},
-  price: {
-type: String},
-  image: {
-  type: String},
-  agentid:{
+  type: String
+  },
+agentid:{
     type:String
   }
   })

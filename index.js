@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const bodyParser = require('body-parser');
 const properties = require('./routes/properties');
 const user = require('./routes/users');
+
 // const passport = require('passport')
 // .FacebookStrategy =require('passport-facebook').Strategy;
 
@@ -37,6 +38,6 @@ app.use(function(err, req, res, next){
 });
 
 // listen for requests
-app.listen(process.env.PORT || 4000, function(){
+app.listen(process.env.PORT || 5000, function(){
     console.log('now listening for requests');
 });
