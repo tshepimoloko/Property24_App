@@ -52,7 +52,7 @@ router.put('/users/:id', function(req, res, next){
 
 // delete a ninja from the db
 router.delete('/users/:id', function(req, res, next){
-    user.findByIdAndRemove({_id: req.params.id}).then(function(User){
+    user.findOneAndDelete({_id: req.params.id}).then(function(User){
         res.send(User);
         //error handle
     }).catch(next);

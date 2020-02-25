@@ -2,17 +2,24 @@ const express = require("express");
 const router = express.Router(); //router object
 const properties = require('../models/properties');
 
-//get a list from the database
+router.get('/', function(req,res,next){ //find all the properties, just all of them
+  properties.find().then(result=>{
+    res.send(result);
+  });
+});
+
+//get a list from the database for specific agent
 router.get('/:agentid', function(req,res,next){
   properties.find({agentid:req.params.agentid}).then(result=>{
     res.send(result);
-  })
+  });
 });
 
 router.get('/:id', function(req,res,next){
   const id = req.params.id;
   properties.find({_id:id}).then(result=>{
     res.send(result);
+  console.log('I am getting');
   })
 });
 
