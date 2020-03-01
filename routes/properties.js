@@ -32,9 +32,11 @@ router.post('/addproperty', function(req,res,next){
 });
 
 //update from db
-router.put('/property/:id', function(req,res, next){
-  properties.findByIDAndUpdate({_id:req.params.id});
-    res.send(properties);
+router.put('/upproperty/:id', function(req,res, next){
+  properties.findOneAndUpdate({_id:req.params.id});
+  properties.findOne({_id:req.params.id}).then(function(properties){
+      res.send(properties);
+    })
   });
 });
 
