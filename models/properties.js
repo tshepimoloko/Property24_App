@@ -10,10 +10,10 @@ bedrooms: {
 price: {
   type: String
   },
-agentid:{
+image:{
     type:String
   },
-image:{
+agentid:{
   type:String
 }
   })

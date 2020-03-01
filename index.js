@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const properties = require('./routes/properties');
 const user = require('./routes/users');
 
-// A test comment
+
 // const passport = require('passport')
 // .FacebookStrategy =require('passport-facebook').Strategy;
 
